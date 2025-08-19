@@ -10,9 +10,9 @@ import json
 
 # Конфигурация
 DATA_DIR = "coco_data"  # Директория для данных
-VAL_IMAGE_DIR = os.path.join(DATA_DIR, "val2017")
+VAL_IMAGE_DIR = os.path.join(DATA_DIR, "train2017")
 ANNOTATIONS_DIR = os.path.join(DATA_DIR, "annotations")
-VAL_ANNOTATIONS_PATH = os.path.join(ANNOTATIONS_DIR, "instances_val2017.json")
+VAL_ANNOTATIONS_PATH = os.path.join(ANNOTATIONS_DIR, "instances_train2017.json")
 NUMBER_CHANNELS = 3
 INPUT_SHAPE = (NUMBER_CHANNELS, 640, 640)
 BATCH_SIZE = 32  # Для оптимизации использования памяти
@@ -25,8 +25,8 @@ os.makedirs(ANNOTATIONS_DIR, exist_ok=True)
 # ---------------------------------------------------------------------
 # 1. Изображения val2017
 if not os.path.exists(VAL_IMAGE_DIR) or len(os.listdir(VAL_IMAGE_DIR)) == 0:
-    print("Downloading val2017 images...")
-    val_url = "http://images.cocodataset.org/zips/val2017.zip"
+    print("Downloading train2017 images...")
+    val_url = "http://images.cocodataset.org/zips/train2017.zip"
     response = requests.get(val_url, stream=True)
     with zipfile.ZipFile(BytesIO(response.content)) as zip_ref:
         zip_ref.extractall(DATA_DIR)
